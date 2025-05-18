@@ -17,4 +17,4 @@ def get_marks(name: list[str] = []):
     print(name_to_marks)
     # Get marks for each name in the query
     marks = [name_to_marks.get(n, None) for n in name]
-    return {"marks": marks}
+    return {"marks": name_to_marks}
