@@ -1,7 +1,17 @@
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 import json
 
 app = FastAPI()
+
+# Enable CORS for all origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
@@ -18,4 +28,6 @@ def get_marks(name: list[str] = Query([])):
     print(f"Name to marks: {name_to_marks}")
     # Get marks for each name in the query
     marks = [name_to_marks.get(n, None) for n in name]
-    return {"marks": marks}
+    # Format marks list with spaces after commas
+    marks_str = ', '.join(str(m) for m in marks)
+    return {"marks": f"[ {marks_str}]"}
