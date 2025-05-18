@@ -30,4 +30,4 @@ def get_marks(name: list[str] = Query([])):
     marks = [name_to_marks.get(n, None) for n in name]
     # Format marks list with spaces after commas
     marks_str = ', '.join(str(m) for m in marks)
-    return {"marks": f"[ {marks_str}]"}
+    return {"marks": f'[ {marks_str}]'}
