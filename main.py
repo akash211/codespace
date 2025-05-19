@@ -1,6 +1,7 @@
+import json
+
 from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
-import json
 
 app = FastAPI()
 
@@ -13,9 +14,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 def read_root():
     return {"message": "Hello, World!"}
+
 
 @app.get("/api")
 def get_marks(name: list[str] = Query([])):
